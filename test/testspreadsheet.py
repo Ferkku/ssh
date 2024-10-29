@@ -44,3 +44,9 @@ class TestSpreadSheet(TestCase):
         ss.set("A1", "=B1")
         ss.set("B1", "42")
         self.assertEqual(42, ss.evaluate("A1"))
+
+    def test_formula_evaluate_invalid_with_reference(self):
+        ss = SpreadSheet()
+        ss.set("A1", "=B1")
+        ss.set("B1", "42.5")
+        self.assertEqual("#Error", ss.evaluate("A1"))
