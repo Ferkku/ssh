@@ -66,3 +66,8 @@ class TestSpreadSheet(TestCase):
         ss = SpreadSheet()
         ss.set("A1", "=1+3.5")
         self.assertEqual("#Error", ss.evaluate("A1"))
+
+    def test_formula_evaluate_division_by_zero(self):
+        ss = SpreadSheet()
+        ss.set("A1", "=1/0")
+        self.assertEqual("#Error", ss.evaluate("A1"))
