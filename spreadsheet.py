@@ -14,6 +14,8 @@ class SpreadSheet:
         value = self.get(cell)
         if value.startswith("'") and value.endswith("'"):
             return value[1:-1]
+        elif value.startswith("=") and value[1:].startswith("'") and value.endswith("'"):
+            return value[2:-1]
         try:
             return int(value)
         except ValueError:
