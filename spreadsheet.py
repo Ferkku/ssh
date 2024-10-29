@@ -16,5 +16,5 @@ class SpreadSheet:
         try:
             return int(value)
         except ValueError:
-            return value
+            return "#Error"
 
