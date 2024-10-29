@@ -61,3 +61,8 @@ class TestSpreadSheet(TestCase):
         ss = SpreadSheet()
         ss.set("A1", "=1+3")
         self.assertEqual(4, ss.evaluate("A1"))
+
+    def test_formula_evaluate_invalid_arithmetic(self):
+        ss = SpreadSheet()
+        ss.set("A1", "=1+3.5")
+        self.assertEqual("#Error", ss.evaluate("A1"))

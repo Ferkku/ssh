@@ -33,6 +33,9 @@ class SpreadSheet:
                         return "#Error"
                     return result
                 else:
+                    # Check if the arithmetic operation involves a float number
+                    if any(char.isdigit() and char2 == '.' for char, char2 in zip(value, value[1:])):
+                        return "#Error"
                     return eval(value[1:])
             except ValueError:
                 return "#Error"
