@@ -3,6 +3,7 @@ class SpreadSheet:
 
     def __init__(self):
         self._cells = {}
+        self._visited = set()
 
     def set(self, cell: str, value: str) -> None:
         self._cells[cell] = value
@@ -21,7 +22,12 @@ class SpreadSheet:
                 if value[1:].isnumeric():
                     return int(value[1:])
                 else:
-                    return self.evaluate(value[1:])
+                    if value[1:] in self._visited:
+                        return "#Circular"
+                    self._visited.add(value[1:])
+                    result = self.evaluate(value[1:])
+                    self._visited.remove(value[1:])
+                    return result
             except ValueError:
                 return "#Error"
         try:
