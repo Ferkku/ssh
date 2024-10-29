@@ -38,3 +38,9 @@ class TestSpreadSheet(TestCase):
         ss = SpreadSheet()
         ss.set("A1", "='Apple")
         self.assertEqual("#Error", ss.evaluate("A1"))
+
+    def test_formula_evaluate_valid_with_reference(self):
+        ss = SpreadSheet()
+        ss.set("A1", "=B1")
+        ss.set("B1", "42")
+        self.assertEqual(42, ss.evaluate("A1"))

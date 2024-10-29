@@ -18,7 +18,10 @@ class SpreadSheet:
             return value[2:-1]
         elif value.startswith("="):
             try:
-                return int(value[1:])
+                if value[1:].isnumeric():
+                    return int(value[1:])
+                else:
+                    return self.evaluate(value[1:])
             except ValueError:
                 return "#Error"
         try:
