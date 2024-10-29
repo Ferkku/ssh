@@ -13,3 +13,13 @@ class TestSpreadSheet(TestCase):
         ss = SpreadSheet()
         ss.set("A1", "1.5")
         self.assertEqual("#Error", ss.evaluate("A1"))
+
+    def test_evaluate_valid_string(self):
+        ss = SpreadSheet()
+        ss.set("A1", "'Apple'")
+        self.assertEqual("Apple", ss.evaluate("A1"))
+
+    def test_evaluate_invalid_string(self):
+        ss = SpreadSheet()
+        ss.set("A1", "Apple")
+        self.assertEqual("#Error", ss.evaluate("A1"))
